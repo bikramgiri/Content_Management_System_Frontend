@@ -5,15 +5,26 @@ import Footer from '../../components/Footer';
 const API_URL = import.meta.env.API_URL || 'http://localhost:2000';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-// import { useState } from 'react';
+import { useState } from 'react';
 
 const CreateBlog = () => {
   const navigate = useNavigate();
+  const [data, setData] = useState({
+    title: '',
+    category: '',
+    description: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const createBlog = async (e) => {
     e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const data = Object.fromEntries(formData.entries())
 
 
     // send above data to api
@@ -37,8 +48,8 @@ const CreateBlog = () => {
               type="text"
               id="title"
               name="title"
-              // value={formData.title || ''}
-              // onChange={setTitle}
+              value={data.title}
+              onChange={handleChange}
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2"
             />
           </div>
@@ -47,8 +58,8 @@ const CreateBlog = () => {
             <select
               id="category"
               name="category"
-              // value={category}
-              // onChange={setCategory}
+              value={data.category}
+              onChange={handleChange}
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2"
             >
               <option value="">Select a category</option>
@@ -76,8 +87,8 @@ const CreateBlog = () => {
             <textarea
               id="description"
               name="description"
-              // value={formData.description}
-              // onChange={handleChange}
+              value={data.description}
+              onChange={handleChange}
               rows="4"
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2"
             ></textarea>
