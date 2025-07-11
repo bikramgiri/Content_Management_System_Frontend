@@ -1,11 +1,10 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 const API_URL = import.meta.env.API_URL || 'http://localhost:2000';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 const CreateBlog = () => {
   const navigate = useNavigate();
@@ -26,7 +25,6 @@ const CreateBlog = () => {
   const createBlog = async (e) => {
     e.preventDefault()
 
-
     // send above data to api
     const response = await axios.post(`${API_URL}/createBlog`, data)
     if(response.status === 201){
@@ -39,7 +37,7 @@ const CreateBlog = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto p-6 max-w-lg bg-white shadow-md rounded-lg mt-10 mb-22 border border-blue-300 dark:border-blue-400">
+      <div className="dark:bg-gray-100 container mx-auto p-6 max-w-lg bg-white shadow-md rounded-lg mt-10 mb-22 border border-blue-300 dark:border-blue-400">
         <h1 className="text-3xl font-bold text-center mb-6">Create Blog</h1>
         <form onSubmit={createBlog} className="space-y-6">
           <div>
@@ -50,7 +48,7 @@ const CreateBlog = () => {
               name="title"
               value={data.title}
               onChange={handleChange}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2"
+              className="mt-1 block w-full border-gray-500 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2 bg-white-500"
             />
           </div>
           <div>
