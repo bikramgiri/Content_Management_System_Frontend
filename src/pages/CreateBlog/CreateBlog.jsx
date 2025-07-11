@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 
 const API_URL = import.meta.env.API_URL || 'http://localhost:2000';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+// import { useState } from 'react';
 
 const CreateBlog = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('');
-  const [description, setDescription] = useState('');
 
   const createBlog = async (e) => {
     e.preventDefault()
-    const data = {
-      title : title,
-      category : category,
-      description : description
-    }
+    const formData = new FormData(e.currentTarget)
+    const data = Object.fromEntries(formData.entries())
+
 
     // send above data to api
     const response = await axios.post(`${API_URL}/createBlog`, data)
@@ -41,8 +37,8 @@ const CreateBlog = () => {
               type="text"
               id="title"
               name="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              // value={formData.title || ''}
+              // onChange={setTitle}
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2"
             />
           </div>
@@ -51,8 +47,8 @@ const CreateBlog = () => {
             <select
               id="category"
               name="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              // value={category}
+              // onChange={setCategory}
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2"
             >
               <option value="">Select a category</option>
@@ -80,8 +76,8 @@ const CreateBlog = () => {
             <textarea
               id="description"
               name="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              // value={formData.description}
+              // onChange={handleChange}
               rows="4"
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2"
             ></textarea>
