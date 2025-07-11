@@ -24,12 +24,12 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/add-blog"
+                to="/createBlog"
                 className={({ isActive }) =>
                   `text-white py-2 px-4 rounded ${isActive ? 'bg-blue-500' : ''} hover:bg-gray-700`
                 }
               >
-                Add Blog
+                Create Blog
               </NavLink>
             </li>
           </ul>

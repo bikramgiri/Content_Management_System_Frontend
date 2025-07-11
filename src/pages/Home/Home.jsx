@@ -9,8 +9,12 @@ const Home = () => {
   const [blogs, setBlogs] = useState([]);
 
   const fetchBlogs = async () => {
-    const response = await axios.get(`${API_URL}/blogs`);
+    try {
+      const response = await axios.get(`${API_URL}/blogs`);
     setBlogs(response.data.blogs);
+    } catch (error) {
+      console.error('Error fetching blogs:', error);
+    }
   };
 
   useEffect(() => {
@@ -23,7 +27,7 @@ const Home = () => {
     <>
       <Navbar />
       <div className="container mb-13 mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {blogs.map((blog) => (
             <div key={blog._id} className="max-w-sm bg-white border border-blue-200 rounded-lg shadow-sm dark:bg-gray-600 dark:border-blue-700">
               <a href="#">
@@ -40,7 +44,7 @@ const Home = () => {
                   </h5>
                 </a>
                 <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-3">
-                  <span className="flex items-center mr-4">
+                  <span className="flex items-center">
                     <svg
                       className="w-4 h-4 mr-1"
                       fill="none"

@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home/Home'
-import AddBlog from './pages/AddBlog/AddBlog'
+import CreateBlog from './pages/CreateBlog/CreateBlog'
 
 function App() {
  
@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/add-blog" element={<AddBlog />} />
+        <Route path="/createBlog" element={<CreateBlog />} />
       </Routes>
     </BrowserRouter>
   )
