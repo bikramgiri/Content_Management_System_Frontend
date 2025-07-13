@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const API_URL = import.meta.env.API_URL || 'http://localhost:2000';
 
@@ -30,19 +31,20 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {blogs.map((blog) => (
             <div key={blog._id} className="max-w-sm bg-white border border-blue-200 rounded-lg shadow-sm dark:bg-gray-600 dark:border-blue-700">
-              <a href="#">
+              <Link to={`/singleBlog/${blog._id}`}>
                 <img
                   className="rounded-t-lg w-full h-48 object-cover"
                   src="./public/blog.jpeg"
                   alt="feature image"
                 />
-              </a>
+              </Link>
               <div className="p-5">
-                <a href="#">
+                <Link to={`/singleBlog/${blog._id}`}>
+                <Link to={`/singleBlog/${blog._id}`}>
                   <h5 className="mb-2 text-2xl font-bold tracking-tight text-blue-800 uppercase dark:text-blue-300">
                     {blog.title}
                   </h5>
-                </a>
+                </Link>
                 <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-3">
                   <span className="flex items-center">
                     <svg
@@ -100,8 +102,7 @@ const Home = () => {
                 <p className="mb-3 font-normal text-gray-900 dark:text-gray-300">
                   {blog.description}
                 </p>
-                <a
-                  href="#"
+                <Link to={`/singleBlog/${blog._id}`}
                   className="inline-flex items-center px-3 py-2 text-sm font-bold text-center text-gray-900 uppercase bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                 >
                   READ MORE
@@ -120,7 +121,8 @@ const Home = () => {
                       d="M1 5h12m0 0L9 1m4 4L9 9"
                     />
                   </svg>
-                </a>
+                </Link>
+              </Link>
               </div>
             </div>
           ))}
